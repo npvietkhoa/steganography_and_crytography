@@ -39,7 +39,8 @@ fun promptPassword() = promptString(PROMPT_PASSWORD_MESSAGE)
 
 /** Check if [messageToHide] is too long to be hidden in the [image] */
 fun messageFitsImage(messageToHide: String, image: BufferedImage): Boolean {
-    return image.height * image.width > (messageToHide.length + 3) * 8
+    return image.height * image.width >
+            (messageToHide.length + STUFFING_BYTES.encodeToByteArray().size) * Byte.SIZE_BITS
 }
 
 /** Encodes [messageToHide] into binary format using [password] and creates it's iterator */
